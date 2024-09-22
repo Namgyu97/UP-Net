@@ -1,5 +1,12 @@
 # Union-Refined Prototype Network for Scene Graph Generation
 
+## Installation
+Check [INSTALL.md](./INSTALL.md) for installation instructions.
+
+## Dataset
+
+Check [DATASET.md](./DATASET.md) for instructions of dataset preprocessing.
+
 ## Train
 ```
 python3 \
@@ -20,3 +27,11 @@ python3 \
   SOLVER.PRE_VAL False \
   SOLVER.GRAD_NORM_CLIP 5.0;
 ```
+
+## Device
+
+All our experiments are conducted on one NVIDIA GeForce RTX 3090, if you wanna run it on your own device, make sure to follow distributed training instructions in [Scene-Graph-Benchmark.pytorch](https://github.com/KaihuaTang/Scene-Graph-Benchmark.pytorch).
+
+## Acknowledgement
+
+The code is implemented based on [Scene-Graph-Benchmark.pytorch](https://github.com/KaihuaTang/Scene-Graph-Benchmark.pytorch).
