@@ -1,16 +1,37 @@
-# UP-Net
+# Union-Refined Prototype Network for Scene Graph Generation
 
+## Installation
+Check [INSTALL.md](./INSTALL.md) for installation instructions.
 
-### [CVPR 2023] Prototype-based Embedding Network for Scene Graph Generation
+## Dataset
 
-|  Model  (Paper)  | R@20  | R@50  | R@100 | mR@20 | mR@50 | mR@100 | zR@20 | zR@50 | zR@100 |
-| :--------------: | :---: | :---: | :---: | :---: | :---: | :----: | :---: | :---: | :----: |
-| PE-Net (PredCls) |   -   | 64.9  | 67.2  |   -   | 31.5  | 33.8   |   -   | 17.16 | 20.89  |
-|  PE-Net (SGCls)  |   -   | 39.4  | 40.7  |   -   | 17.8  | 18.9   |   -   | 05.37 | 06.53  |
-|  PE-Net (SGDet)  |   -   | 30.7  | 35.2  |   -   | 12.4  | 14.5   |   -   | 02.31 | 03.60  |
+Check [DATASET.md](./DATASET.md) for instructions of dataset preprocessing.
 
-|  Model (Github)  | R@20  | R@50  | R@100 | mR@20 | mR@50 | mR@100 | zR@20 | zR@50 | zR@100 |
-| :--------------: | :---: | :---: | :---: | :---: | :---: | :----: | :---: | :---: | :----: |
-| PE-Net (PredCls) | 58.21 | 65.23 | 67.34 | 25.83 | 31.42 | 33.48  | 10.61 | 17.13 | 21.06  |
-|  PE-Net (SGCls)  | 35.28 | 39.13 | 40.19 | 15.23 | 18.22 | 19.34  | 03.03 | 05.23 | 06.57  |
-|  PE-Net (SGDet)  | 23.36 | 30.41 | 34.84 | 09.16 | 12.25 | 14.34  | 01.19 | 02.31 | 03.41  |
+## Train
+```
+python3 \
+  tools/relation_train_net.py \
+  --config-file "configs/e2e_relation_X_101_32_8_FPN_1x.yaml" \
+  MODEL.ROI_RELATION_HEAD.USE_GT_BOX False \
+  MODEL.ROI_RELATION_HEAD.USE_GT_OBJECT_LABEL False \
+  MODEL.ROI_RELATION_HEAD.PREDICTOR UP-Net \
+  DTYPE "float32" \
+  SOLVER.IMS_PER_BATCH 8 TEST.IMS_PER_BATCH 1 \
+  SOLVER.MAX_ITER 60000 SOLVER.BASE_LR 1e-3 \
+  SOLVER.SCHEDULE.TYPE WarmupMultiStepLR \
+  MODEL.ROI_RELATION_HEAD.BATCH_SIZE_PER_IMAGE 1024 \
+  SOLVER.STEPS "(28000, 48000)" SOLVER.VAL_PERIOD 30000 \
+  SOLVER.CHECKPOINT_PERIOD 30000 GLOVE_DIR ./datasets/vg/ \
+  MODEL.PRETRAINED_DETECTOR_CKPT ./checkpoints/pretrained_faster_rcnn/model_final.pth \
+  OUTPUT_DIR ./checkpoints/UP-Net_SGDet \
+  SOLVER.PRE_VAL False \
+  SOLVER.GRAD_NORM_CLIP 5.0;
+```
+
+## Device
+
+All our experiments are conducted on one NVIDIA GeForce RTX 3090, if you wanna run it on your own device, make sure to follow distributed training instructions in [Scene-Graph-Benchmark.pytorch](https://github.com/KaihuaTang/Scene-Graph-Benchmark.pytorch).
+
+## Acknowledgement
+
+The code is implemented based on [Scene-Graph-Benchmark.pytorch](https://github.com/KaihuaTang/Scene-Graph-Benchmark.pytorch).
