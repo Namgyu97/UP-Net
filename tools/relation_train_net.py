@@ -1,3 +1,6 @@
+import warnings
+warnings.filterwarnings(action='ignore')
+
 # Copyright (c) Facebook, Inc. and its affiliates. All Rights Reserved.
 """
 Basic training script for PyTorch
@@ -47,11 +50,14 @@ def setup_seed(seed):
     torch.manual_seed(seed)
     torch.cuda.manual_seed(seed)
     torch.cuda.manual_seed_all(seed)
+
+    torch.backends.cudnn.benchmark = False
+    torch.backends.cudnn.deterministic = True
     
     np.random.seed(seed)
     random.seed(seed)
 
-setup_seed(19991001)
+setup_seed(19970421)
 
 def train(cfg, local_rank, distributed, logger):
     debug_print(logger, 'prepare training')
