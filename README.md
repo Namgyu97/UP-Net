@@ -1,4 +1,4 @@
-# Union-Refined Prototype Network for Scene Graph Generation
+ㄷ# Union-Redefined Prototype Network for Scene Graph Generation
 
 ## Installation
 Check [INSTALL.md](./INSTALL.md) for installation instructions.
