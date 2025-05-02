@@ -39,7 +39,7 @@ The code is implemented based on [Scene-Graph-Benchmark.pytorch](https://github.
 ## Citation
 
 ```bibtex
-@article{JUNG2025127486,
+@article{Jung2025,
   title = {Union-Redefined Prototype Network for scene graph generation},
   journal = {Expert Systems with Applications},
   volume = {280},
