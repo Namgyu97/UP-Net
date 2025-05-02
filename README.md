@@ -35,3 +35,19 @@ All our experiments are conducted on one NVIDIA GeForce RTX 4090, if you wanna r
 ## Acknowledgement
 
 The code is implemented based on [Scene-Graph-Benchmark.pytorch](https://github.com/KaihuaTang/Scene-Graph-Benchmark.pytorch).
+
+## Citation
+
+```bibtex
+@article{JUNG2025127486,
+  title = {Union-Redefined Prototype Network for scene graph generation},
+  journal = {Expert Systems with Applications},
+  volume = {280},
+  pages = {127486},
+  year = {2025},
+  issn = {0957-4174},
+  doi = {https://doi.org/10.1016/j.eswa.2025.127486},
+  url = {https://www.sciencedirect.com/science/article/pii/S095741742501108X},
+  author = {NamGyu Jung and Chang Choi},
+  keywords = {Scene graph generation, Visual relation detection, Predicate differentiation, Non-overlapping regions, Commonsense knowledge}
+}
